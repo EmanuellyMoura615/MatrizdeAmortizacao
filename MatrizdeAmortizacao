@@ -1,0 +1,32 @@
+public class MatrizdeAmortizacao {
+    public static void main(String[] args) {
+
+        double valorPrincipal = 2000;
+        double taxa = 0.08;
+
+        //matriz de amortização
+        System.out.println("\nMatriz de Amortização:");
+        imprimirTabelaAmortizacao(valorPrincipal, taxa, 9); // 9 anos de duração
+    }
+
+    //metodo para calcular o valor futuro com juros
+    public static double calcularValorFuturo(double principal, double taxa, int anos) {
+        return principal * Math.pow(1 + taxa, anos);
+    }
+
+    //imprimir a matriz de amortização
+    public static void imprimirTabelaAmortizacao(double principal, double taxa, int totalAnos) {
+        double saldo = principal;
+        for (int ano = 1; ano <= totalAnos; ano++) {
+            double juros = saldo * taxa; // Juros do ano
+            double pagamentoTotal = saldo + juros; // Valor total devido ao fim do ano
+
+            //exibir o ano, o saldo inicial, os juros e pagamento total
+            System.out.printf("Ano %d: Saldo inicial: R$%.2f, Juros: R$%.2f, Valor devido: R$%.2f\n",
+                    ano, saldo, juros, pagamentoTotal);
+
+            //atualizar saldo
+            saldo = pagamentoTotal; //simulação sem amortizações anuais
+        }
+    }
+}
